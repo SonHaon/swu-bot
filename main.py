@@ -57,6 +57,7 @@ class bot(commands.Bot):
         # commande
         await self.add_cog(ping(self),guild=guild)
         await self.add_cog(card(self),guild=guild)
+        await self.add_cog(reboot(self),guild=guild)
 
         await self.tree.sync(guild=guild)
         await self.tree.sync()
