@@ -14,8 +14,8 @@ from .fonction import image_bienvenue
 
 async def embed_fr(bot,member:discord.Member):
     embed = discord.Embed(
-            title="Bienvenue sur notre serveur",
-            description=f"bienvenue",
+            title=f"Bienvenue {member.guild.name}",
+            description=f"Hello {member.mention}, Bienvenue sur Star Wars : Unlimited FR !\nCe discord a été créé pour regrouper le plus de joueurs francophone possibles pour partager autour du jeu.\nCommence par un petit tour sur #règles et mets une petite ✅ pour les accepter.\nTu trouveras dans #ressources ce qu’il te faut pour jouer en PnP ou en ligne.\nN’hésites pas à te présenter la suite de ce message 🙂",
             color=discord.Color.darker_grey())
     embed.set_image(url= await image_bienvenue(bot,member))
     return embed
