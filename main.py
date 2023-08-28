@@ -14,7 +14,7 @@ import logging.handlers
 import deepl
 from discord.app_commands import Translator, locale_str, TranslationContext, TranslationContextLocation
 from Cogs_sommaire import *
-from Cogs.button import buttons_card
+from Cogs.button import button_rules
 
 load_dotenv(".env")
 TOKEN = os.getenv("TOKEN")
@@ -60,7 +60,7 @@ class bot(commands.Bot):
         await self.add_cog(card(self),guild=guild)
         await self.add_cog(reboot(self),guilds=[guild,guild_test])
         await self.add_cog(member_join(self),guild=guild)
-        await self.add_cog(rules(self),guild=guild_test)
+        await self.add_cog(rules(self),guilds=[guild,guild_test])
 
         await self.tree.sync(guild=guild)
         await self.tree.sync()
@@ -68,6 +68,7 @@ class bot(commands.Bot):
 
     async def on_ready(self):
         await self.wait_until_ready()
+        await self.add_view(button_rules(self.get_guild(1105547376690745426).get_role(1145757810852892863)))
         await self.change_presence(activity=discord.Activity(type=discord.ActivityType.watching,name="L'Empire contre-attaque"))
 
 SonHaon_Bot = bot()
