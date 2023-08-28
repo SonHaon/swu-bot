@@ -49,6 +49,7 @@ class MyTranslator(Translator):
 class bot(commands.Bot):
     def __init__(self):
         intents = discord.Intents.all()
+        self.sync=False
         super().__init__(intents = intents,command_prefix="%µ¨£%£µ%",help_command=None)
         
     async def setup_hook(self):
@@ -64,10 +65,13 @@ class bot(commands.Bot):
 
         await self.tree.sync(guild=guild)
         await self.tree.sync()
+        self.sync=True
 
 
     async def on_ready(self):
         await self.wait_until_ready()
+        if self.sync:
+            print("sync")
         self.add_view(button_rules(self.get_guild(1105547376690745426).get_role(1145757810852892863)))
         await self.change_presence(activity=discord.Activity(type=discord.ActivityType.watching,name="L'Empire contre-attaque"))
 
