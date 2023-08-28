@@ -72,6 +72,8 @@ class bot(commands.Bot):
         await self.wait_until_ready()
         if self.sync:
             print("sync")
+        else:
+            print("pas sync :(")
         self.add_view(button_rules(self.get_guild(1105547376690745426).get_role(1145757810852892863)))
         await self.change_presence(activity=discord.Activity(type=discord.ActivityType.watching,name="L'Empire contre-attaque"))
 
