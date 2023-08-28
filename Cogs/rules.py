@@ -33,7 +33,7 @@ class rules(commands.GroupCog,name=_t(
             en="create rule message"
         )
     )
-    async def rules(self,interaction:discord.Interaction,message:str,role=discord.Role):
+    async def create(self,interaction:discord.Interaction,message:str,role=discord.role):
         await interaction.response.defer(ephemeral=True)
         embed=discord.Embed(title="__**Règlements**__",description=message,colour=discord.Colour.dark_grey)
         embed.set_footer(text="Clique sur le bouton ✅ pour acceder a l'entièreté du serveur")
