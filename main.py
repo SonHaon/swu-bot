@@ -61,6 +61,7 @@ class bot(commands.Bot):
         await self.add_cog(reboot(self),guilds=[guild,guild_test])
         await self.add_cog(member_join(self),guild=guild)
         await self.add_cog(rules(self),guild=guild_test)
+        print("sync")
 
         await self.tree.sync(guild=guild)
         await self.tree.sync()
