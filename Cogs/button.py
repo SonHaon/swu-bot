@@ -163,4 +163,4 @@ class button_rules(discord.ui.View):
     )
     async def accept(self,interaction:discord.Interaction,button:discord.ui.Button):
         await interaction.user.add_roles(self.role,reason="acceptation des règles")
-        await interaction.response.send_message(content="Merci d'avoir lu et accepté les règles,\nVous avez maintenant accès a l'entièreté du serveur")
+        await interaction.response.send_message(content="Merci d'avoir lu et accepté les règles,\nVous avez maintenant accès a l'entièreté du serveur",ephemeral=True)
