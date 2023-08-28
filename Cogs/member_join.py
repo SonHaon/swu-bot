@@ -16,7 +16,7 @@ async def embed_fr(bot,member:discord.Member):
     embed = discord.Embed(
             title="Bienvenue sur notre serveur",
             description=f"bienvenue",
-            color=discord.Color.dark_gray())
+            color=discord.Color.darker_grey())
     embed.set_image(url= await image_bienvenue(bot,member))
     return embed
 
