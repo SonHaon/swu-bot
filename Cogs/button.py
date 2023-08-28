@@ -124,8 +124,7 @@ class buttons_switch(discord.ui.View):
             return True
     async def on_error(self, interaction: Interaction, error: Exception, item: Item[Any]) -> None:
         await interaction.response.send_message(content="Désolé vous ne pouvez pas faire ça",ephemeral=True)
-
-        
+ 
 class buttons_card(discord.ui.View):
     def __init__(self,type,set,number,trad):
         super().__init__(timeout=None)
@@ -149,3 +148,20 @@ class buttons_card(discord.ui.View):
             return True
     async def on_error(self, interaction: Interaction, error: Exception, item: Item[Any]) -> None:
         raise error
+
+
+class button_rules(discord.ui.View):
+    def __init__(self,role:discord.Role):
+        self.role=role
+        super().__init__(timeout=None)
+    
+    @discord.ui.button(
+        style=ButtonStyle.green,
+        emoji="✅",
+        custom_id="accept",
+        row=0
+    )
+    async def accept(self,interaction:discord.Interaction,button:discord.ui.Button):
+        await interaction.response.defer(ephemeral=True)
+        await interaction.user.add_roles(roles=[self.role],reason="acceptation des règles")
+        await interaction.edit_original_response(content="Merci d'avoir lu et accepté les règles,\nVous avez maintenant accès a l'entièreté du serveur")
