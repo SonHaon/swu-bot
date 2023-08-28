@@ -14,7 +14,7 @@ from .fonction import image_bienvenue
 
 async def embed_fr(bot,member:discord.Member):
     embed=discord.Embed(
-        title=f"Bienvenue {member.guild.name}",
+        title=f"**__Bienvenue {member.guild.name}__**",
         color=discord.Color.darker_grey())
     embed.set_image(url= await image_bienvenue(bot,member))
     embed2 = discord.Embed(
@@ -29,7 +29,7 @@ class member_join(commands.Cog):
 
     @commands.Cog.listener(name="on_member_join")
     async def timeout(self,member:discord.Member):
-        channel = member.guild.get_channel(934114546304553012)
+        channel = member.guild.get_channel(1105549837040091146)
         if member.id == 931236217465471066:
             channel = member.guild.get_channel(934114546304553012)
         embeds = await embed_fr(self.bot,member)
