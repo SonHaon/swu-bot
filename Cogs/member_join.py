@@ -31,7 +31,7 @@ class member_join(commands.Cog):
         channel = member.guild.get_channel(934114546304553012)
         if member.id == 931236217465471066:
             channel = member.guild.get_channel(934114546304553012)
-        embed = await embed_fr(self.bot,member)
-        await channel.send(member.mention,embed=embed)
+        embeds = await embed_fr(self.bot,member)
+        await channel.send(member.mention,embeds=embeds)
         await asyncio.sleep(2)
         os.remove(f"/home/sonhaon/swu-bot/{member.name}.png")
