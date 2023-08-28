@@ -112,7 +112,7 @@ async def image_bienvenue(bot,member:discord.Member):
     img = Image.open("/home/sonhaon/swu-bot/joinimg.png")
     draw = ImageDraw.Draw(img)
     font= ImageFont.truetype("/home/sonhaon/swu-bot/Quicksand_Bold.otf",50)
-    draw.multiline_text((650,150),f"Bienvenue {member.display_name}\n\nsur notre serveur : \n\n{member.guild}", (255,255,255), anchor="mm",font=font,align="center")
+    draw.multiline_text((650,150),f"Bienvenue {member.display_name}\n\nsur notre serveur : \n\nStar Wars : Unlimited FR", (255,255,255), anchor="mm",font=font,align="center")
     img.paste(user_pp, box=(22,22),mask=user_pp)
     img.save(f"/home/sonhaon/swu-bot/{member.name}.png")
     channel_image=bot.get_channel(1009137943077724240)
