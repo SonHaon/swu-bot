@@ -56,9 +56,9 @@ class bot(commands.Bot):
         # set le traducteur
         await self.tree.set_translator(MyTranslator())
         # commande
-        await self.add_cog(ping(self))
+        await self.add_cog(ping(self),guilds=[guild,guild_test])
         await self.add_cog(card(self),guild=guild)
-        await self.add_cog(reboot(self))
+        await self.add_cog(reboot(self),guilds=[guild,guild_test])
         await self.add_cog(member_join(self),guild=guild_test)
 
         await self.tree.sync(guild=guild)
