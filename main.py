@@ -22,6 +22,9 @@ guild = discord.Object(id=1105547376690745426)
 guild_test = discord.Object(id=916617095876337664)
 translator = deepl.Translator("b2f44de3-fa00-9598-36ba-effea8104e2b:fx") 
 
+logger = logging.getLogger('discord.artichauds')
+logger.setLevel(logging.INFO)
+
 class MyTranslator(Translator):
     async def translate(
         self,
@@ -71,9 +74,9 @@ class bot(commands.Bot):
     async def on_ready(self):
         await self.wait_until_ready()
         if self.sync:
-            print("sync")
+            logger.info("sync")
         else:
-            print("pas sync :(")
+            logger.info("pas sync :(")
         self.add_view(button_rules(self.get_guild(1105547376690745426).get_role(1145757810852892863)))
         await self.change_presence(activity=discord.Activity(type=discord.ActivityType.watching,name="L'Empire contre-attaque"))
 
