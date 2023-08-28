@@ -19,6 +19,7 @@ from Cogs.button import buttons_card
 load_dotenv(".env")
 TOKEN = os.getenv("TOKEN")
 guild = discord.Object(id=1105547376690745426)
+guild_test = discord.Object(id=916617095876337664)
 translator = deepl.Translator("b2f44de3-fa00-9598-36ba-effea8104e2b:fx") 
 
 class MyTranslator(Translator):
@@ -58,6 +59,7 @@ class bot(commands.Bot):
         await self.add_cog(ping(self))
         await self.add_cog(card(self),guild=guild)
         await self.add_cog(reboot(self))
+        await self.add_cog(member_join(self),guild=guild_test)
 
         await self.tree.sync(guild=guild)
         await self.tree.sync()

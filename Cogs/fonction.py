@@ -2,6 +2,11 @@ from requests import get
 import json
 import discord
 import deepl
+from datetime import datetime
+from PIL import Image,ImageDraw,ImageFont
+import numpy as np
+from io import BytesIO
+import aiohttp
 
 blacklist=["FrontArt","BackArt","DoubleSided"]
 card_fields_leader=["Name","Subtitle","Type","Aspects","Traits","Arenas","Cost","Power","HP","FrontText","EpicAction","BackText","Rarity","Unique","Artist","Set","Number",None]
@@ -87,3 +92,29 @@ def fields_fr(embed:discord.Embed,card:dict,translator:deepl.Translator):
         except:
             print("une erreur dans les fields")
     return embed
+
+def circular_crowp(img):
+    img=img.convert("RGB")
+    npImage=np.array(img)
+    h,w=img.size
+    alpha = Image.new('L', img.size,0)
+    draw = ImageDraw.Draw(alpha)
+    draw.pieslice([0,0,h,w],0,360,fill=255)
+    npAlpha=np.array(alpha)
+    npImage=np.dstack((npImage,npAlpha))
+    return Image.fromarray(npImage)
+
+async def image_bienvenue(bot,member:discord.Member):
+    user_pp_url = member.display_avatar.replace(size=256)
+    user_pp_url = BytesIO(await user_pp_url.read())
+    user_pp = Image.open(user_pp_url)
+    user_pp = circular_crowp(user_pp)
+    img = Image.open("/home/sonhaon/swu-bot/joinimg.png")
+    draw = ImageDraw.Draw(img)
+    font= ImageFont.truetype("/home/sonhaon/swu-bot/Quicksand_Bold.otf",50)
+    draw.multiline_text((650,150),f"Bienvenue {member.display_name}\n\nsur notre serveur : \n\n{member.guild}", (255,255,255), anchor="mm",font=font,align="center")
+    img.paste(user_pp, box=(22,22),mask=user_pp)
+    img.save(f"/home/sonhaon/swu-bot/{member.name}.png")
+    channel_image=bot.get_channel(1009137943077724240)
+    message = await channel_image.send(file=discord.File(f"/home/sonhaon/swu-bot/{member.name}.png"))
+    return message.attachments[0].url
