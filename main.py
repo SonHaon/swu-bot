@@ -67,7 +67,7 @@ class bot(commands.Bot):
 
     async def on_ready(self):
         await self.wait_until_ready()
-        await self.change_presence(activity=discord.Activity(type=discord.ActivityType.watching,name="/carte"))
+        await self.change_presence(activity=discord.Activity(type=discord.ActivityType.watching,name="L'Empire contre-attaque"))
 
 SonHaon_Bot = bot()
 tree = SonHaon_Bot.tree
