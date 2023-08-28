@@ -34,7 +34,7 @@ class rules(commands.GroupCog,name=_t(
             en="create rule message"
         )
     )
-    @check.is_SonHaon()
+    @check.is_admin()
     async def create(self,interaction:discord.Interaction,message:str,role:discord.Role):
         await interaction.response.defer(ephemeral=True)
         embed=discord.Embed(title="__**Règlements**__",description=message,colour=discord.Colour.dark_grey())
