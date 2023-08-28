@@ -63,7 +63,6 @@ class bot(commands.Bot):
         await self.add_cog(rules(self),guild=guild_test)
 
         await self.tree.sync(guild=guild)
-        await self.tree.sync(guild=guild_test)
         await self.tree.sync()
 
 
