@@ -29,11 +29,11 @@ class member_join(commands.Cog):
 
     @commands.Cog.listener(name="on_member_join")
     async def timeout(self,member:discord.Member):
-        path=path.dirname(path.abspath(__file__))
+        path=os.path.dirname(os.path.abspath(__file__))
         channel = member.guild.get_channel(1105549837040091146)
         if member.id == 931236217465471066:
             channel = member.guild.get_channel(934114546304553012)
         embeds = await embed_fr(self.bot,member)
         await channel.send(member.mention,embeds=embeds)
         await asyncio.sleep(2)
-        os.remove(f"‘path/{member.name}.png")
+        os.remove(f"{path}/{member.name}.png")
