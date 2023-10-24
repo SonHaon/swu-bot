@@ -9,6 +9,8 @@ from io import BytesIO
 import aiohttp
 import os
 
+path=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 blacklist=["FrontArt","BackArt","DoubleSided"]
 card_fields_leader=["Name","Subtitle","Type","Aspects","Traits","Arenas","Cost","Power","HP","FrontText","EpicAction","BackText","Rarity","Unique","Artist","Set","Number",None]
 card_fields_unit=["Name","Type",None,"Aspects","Traits","Arenas","Cost","Power","HP","FrontText","Rarity","Unique","Artist","Set","Number",None]
@@ -106,7 +108,6 @@ def circular_crowp(img):
     return Image.fromarray(npImage)
 
 async def image_bienvenue(bot,member:discord.Member):
-    path=os.path.dirname(os.path.abspath(__file__))
     user_pp_url = member.display_avatar.replace(size=256)
     user_pp_url = BytesIO(await user_pp_url.read())
     user_pp = Image.open(user_pp_url)
