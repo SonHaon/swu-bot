@@ -105,16 +105,17 @@ def circular_crowp(img):
     return Image.fromarray(npImage)
 
 async def image_bienvenue(bot,member:discord.Member):
+    path=path.dirname(path.abspath(__file__))
     user_pp_url = member.display_avatar.replace(size=256)
     user_pp_url = BytesIO(await user_pp_url.read())
     user_pp = Image.open(user_pp_url)
     user_pp = circular_crowp(user_pp)
-    img = Image.open("/home/sonhaon/swu-bot/joinimg.png")
+    img = Image.open(f"{path}/joinimg.png")
     draw = ImageDraw.Draw(img)
-    font= ImageFont.truetype("/home/sonhaon/swu-bot/Quicksand_Bold.otf",50)
+    font= ImageFont.truetype(f"{path}/Quicksand_Bold.otf",50)
     draw.multiline_text((650,150),f"Bienvenue {member.display_name}\n\nsur notre serveur : \n\n{member.guild}", (255,255,255), anchor="mm",font=font,align="center")
     img.paste(user_pp, box=(22,22),mask=user_pp)
-    img.save(f"/home/sonhaon/swu-bot/{member.name}.png")
+    img.save(f"{path}/{member.name}.png")
     channel_image=bot.get_channel(1009137943077724240)
-    message = await channel_image.send(file=discord.File(f"/home/sonhaon/swu-bot/{member.name}.png"))
+    message = await channel_image.send(file=discord.File(f"{path}/{member.name}.png"))
     return message.attachments[0].url
