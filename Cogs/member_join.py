@@ -35,6 +35,7 @@ class member_join(commands.Cog):
         if member.id == 931236217465471066:
             channel = member.guild.get_channel(934114546304553012)
         embeds = await embed_fr(self.bot,member)
-        await channel.send(member.mention,embeds=embeds)
+        message = await channel.send(member.mention,embeds=embeds)
+        await message.add_reaction("👋")
         await asyncio.sleep(2)
         os.remove(f"{path}/{member.name}.png")
