@@ -47,7 +47,7 @@ class logs(commands.Cog):
 
         envoi=[]
         for ligne in lignes:
-            if ligne != last_log:
+            if ligne != last_log and not("Shard ID None has successfully RESUMED" in ligne):
                 envoi.append(ligne)
             else:
                 break
