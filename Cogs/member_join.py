@@ -20,7 +20,7 @@ async def embed_fr(bot,member:discord.Member):
         color=discord.Color.darker_grey())
     embed.set_image(url= await image_bienvenue(bot,member))
     embed2 = discord.Embed(
-            description=f"Hello {member.mention}, Bienvenue sur **{member.guild.name}** !\nCe discord a été créé pour regrouper le plus de joueurs francophones possibles pour partager autour du jeu.\nCommence par un petit tour sur <#1105550580274962563> et mets une petite ✅ pour les accepter.\nTu trouveras dans <#1131216270147199076> ce qu’il te faut pour jouer en PnP ou en ligne.\nN’hésites pas à te présenter la suite de ce message 🙂",
+            description=f"Hello {member.mention}, Bienvenue sur **{member.guild.name}** !\nCe discord a été créé pour regrouper le plus de joueurs francophones possibles pour partager autour du jeu.",  #\nCommence par un petit tour sur <#1105550580274962563> et mets une petite ✅ pour les accepter.\nTu trouveras dans <#1131216270147199076> ce qu’il te faut pour jouer en PnP ou en ligne.\nN’hésites pas à te présenter la suite de ce message 🙂
             color=discord.Color.darker_grey())
     return [embed,embed2]
 
