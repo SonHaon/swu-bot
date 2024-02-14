@@ -121,3 +121,7 @@ async def image_bienvenue(bot,member:discord.Member):
     channel_image=bot.get_channel(1009137943077724240)
     message = await channel_image.send(file=discord.File(f"{path}/{member.name}.png"))
     return message.attachments[0].url
+
+async def member_count(guild:discord.Guild):
+    counter_channel=guild.get_channel(1207325510418432010)
+    await counter_channel.edit(name=f"Membres : {guild.member_count}")

@@ -10,7 +10,7 @@ import os
 import random 
 import logging
 logger = logging.getLogger('discord.artichauds') 
-from .fonction import image_bienvenue
+from .fonction import image_bienvenue,member_count
 
 path=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -31,6 +31,7 @@ class member_join(commands.Cog):
 
     @commands.Cog.listener(name="on_member_join")
     async def timeout(self,member:discord.Member):
+        await member_count(member.guild)
         channel = member.guild.get_channel(1105549837040091146)
         if member.id == 931236217465471066:
             channel = member.guild.get_channel(934114546304553012)
@@ -39,3 +40,11 @@ class member_join(commands.Cog):
         await message.add_reaction("👋")
         await asyncio.sleep(2)
         os.remove(f"{path}/{member.name}.png")
+
+class member_leave(commands.Cog): 
+    def __init__(self,bot:commands.Bot) -> None: 
+        self.bot = bot 
+
+    @commands.Cog.listener(name="on_member_leave")
+    async def timeout(self,member:discord.Member):
+        await member_count(member.guild)
