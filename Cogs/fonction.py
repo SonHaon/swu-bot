@@ -7,8 +7,9 @@ from PIL import Image,ImageDraw,ImageFont
 import numpy as np
 from io import BytesIO
 import aiohttp
-import os
+import os,logging
 
+logger = logging.getLogger('discord.artichauds')
 path=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 blacklist=["FrontArt","BackArt","DoubleSided"]
@@ -35,21 +36,25 @@ emoji={
 }
 card_not_inline=["FrontText","EpicAction","BackText"]
 
-def trad_card(card:dict,translator):
+def trad_card(card:dict,translator:deepl.Translator):
     with open("Cogs/glossaire.json") as glossaire:
         glossaire=json.load(glossaire)
     glossaire_id=translator.create_glossary(name="SWU",source_lang="EN",target_lang="FR",entries=glossaire).glossary_id
+    logger.info(card)
     for name in card:
         if name=="Type_EN":
             pass
         elif type(card[name])==type(list()):
             liste=[]
             for each in card[name]:
+                logger.info(translator.translate_text(str(each),source_lang="EN",target_lang="FR",glossary=glossaire_id))
                 liste.append(translator.translate_text(each,source_lang="EN",target_lang="FR",glossary=glossaire_id).text)
             card[name]=liste
         elif type(card[name])==type(bool()):
+            logger.info(translator.translate_text(str(card[name]),source_lang="EN",target_lang="FR",glossary=glossaire_id))
             card[name]=translator.translate_text(str(card[name]),source_lang="EN",target_lang="FR",glossary=glossaire_id).text
         else:
+            logger.info(translator.translate_text(str(card[name]),source_lang="EN",target_lang="FR",glossary=glossaire_id))
             card[name]=translator.translate_text(card[name],source_lang="EN",target_lang="FR",glossary=glossaire_id).text
     return card 
 

@@ -60,10 +60,11 @@ class bot(commands.Bot):
         await self.tree.set_translator(MyTranslator())
         # commande
         await self.add_cog(ping(self),guilds=[guild,guild_test])
-        await self.add_cog(card(self),guild=guild)
+        await self.add_cog(card(self),guilds=[guild,guild_test])
         await self.add_cog(reboot(self),guilds=[guild,guild_test])
         await self.add_cog(member_join(self),guild=guild)
         await self.add_cog(member_leave(self),guild=guild)
+        await self.add_cog(compteur_jour(self),guild=guild)
         await self.add_cog(rules(self),guilds=[guild,guild_test])
         await self.add_cog(logs(self),guilds=[guild,guild_test])
 
